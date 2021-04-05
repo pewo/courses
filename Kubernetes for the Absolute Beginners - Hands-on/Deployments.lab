@@ -1,0 +1,45 @@
+Deploymentset
+-----------------
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-deploutment
+  labels:
+    app: nginx
+    type: frontend
+spec:
+  template:
+    metadata:
+      name: myapp-pod
+      labels:
+        app: myapp
+        type: front-end
+    spec:
+      containers:
+      - name: nginx-container
+        image: nginx
+  replicas: 3
+  selector:
+    matchLabels:
+      type: front-end 
+
+
+kubectl create -f deployment.yml
+kubectl get deployments
+   kubectl get replicaset
+     kubectl get pods
+
+kubectl get all
+
+
+
+kubectl create -f deployment.yml
+kubectl get deployments
+kubectl apply -f deployment.yml
+kubectl set image deployment/myapp-deployment nginx=nginx:1.9.1
+
+kubectl rollout status deployment/myapp-deployment
+kubectl rollout history deployment/myapp-deployment
+kubectl rollout undo deployment/myapp-deployment
+
+
